@@ -1,5 +1,4 @@
-
-let search_tvShows = document.getElementById('search_input');
+const search_tvShows = document.getElementById('search_input');
 const results_display = document.getElementById('output');
 const searchBtn = document.getElementById('search_btn');
 
@@ -13,51 +12,26 @@ searchBtn.onclick = () => {
     .then((data) => {
 
         console.log(data);
-        let output ='';
-
+        let output = '';
         data.map((values) => {
 
             output += `
-                    
-                    <ul class="list-group">
-                    <img src= ${values.show.image.medium}  alt="show image">
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">Show Name: ${values.show.name}</li>
-                    <li class="list-group-item">Premiered: ${values.show.premiered}</li>
-                    <li class="list-group-item">Runtime: ${values.show.runtime}</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
-                    </ul>
-             `    
-
-        })
-        
+            <div class="card my-2 mx-auto bg-dark" id="output" style="width: 20rem;">
+             <img src= ${values.show.image.medium} alt="tv show image" class="card-img-top mt-3">
+              <div class="card-body">
+                <h5 class="card-title text-info">Show Name: ${values.show.name}</h5>
+                <h6 class="card-subtitle mb-2 text-warning">Premiered: ${values.show.premiered}</h6>
+                <h6 class="card-subtitle mb-2 text-warning">Status: ${values.show.status}</h6>
+                <h6 class="card-subtitle mb-2 text-warning">Runtime: ${values.show.runtime}</h6>
+                <h6 class="card-subtitle mb-2 text-warning">Official Site:${values.show.officialSite}</h6>
+                <h6 class="card-subtitle text-light">Summary: ${values.show.summary}</h6>
+              </div>
+            </div>   ` 
+        }) 
         results_display.innerHTML = output
-
-    })
-    
+    })   
 }
 
 
 
-/**
- * 
- *   <div class="container" id="output">
-            <div class="row">
-            <div class="col-lg-3">
 
-            <div class="col-md-3 col-lg-3 mx-auto border-rounded d-flex flex-row">
-              <div class="card" style="width: 18rem;">
-              <img src= ${values.show.image.medium} class="card-img-top" alt="">
-              <div class="card-body">
-              <h5 class="card-title">Show Name: ${values.show.name}</h5>
-              <p class="card-text">Summary: ${values.show.summary}</p>
-              <p class="card-text">Runtime: ${values.show.runtime}</p>
-              </div> 
-            </div></div>
-
-            </div>
-            </div>
-            </div>
- * 
- */
