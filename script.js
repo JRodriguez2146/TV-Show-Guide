@@ -50,8 +50,8 @@ searchBtn.onclick = () => {
 
         console.log(data);
         let output = '';
+        //map over data returned from response and display in template literal
         data.map((values) => {
-            //map over data returned from response and display in template literal
             output += `
             <div class="card my-2 mx-auto bg-dark" id="output" style="width: 22rem;">
               <div class="card-body">
