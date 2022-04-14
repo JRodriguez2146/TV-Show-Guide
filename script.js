@@ -4,9 +4,9 @@ const searchBtn = document.getElementById('search_btn');
 const tv_guide = document.getElementById('tv_guide');
 const footer = document.getElementById('footer');
 
-
+//A function to display current American Tv show show listings on window load
 window.onload = () => { 
-    
+    //fetch data
     const current_date = new Date();
     const url= `https://api.tvmaze.com/schedule?country=US&data=${current_date}`;
     fetch(url) 
@@ -15,8 +15,9 @@ window.onload = () => {
 
         console.log(data);
         let current_schedule = '';
+        //map over data returned from response and display in template literal
         data.map((values) => {
-
+            
             current_schedule += `
             <div class="card my-2 mx-auto bg-dark" id="output" style="width: 20rem;">
 
@@ -32,15 +33,15 @@ window.onload = () => {
               </div>
             </div> `
         })
-        tv_guide.innerHTML = current_schedule
+        tv_guide.innerHTML = current_schedule //return template literal with data results to innerHTML for display
     })
     .catch((error) => {
       console.log(error);
     });
 } 
-
+//A function to return a search query based on user input
 searchBtn.onclick = () => {
-
+    //fetch data
     const query = search_tvShows.value;
     const url = `https://api.tvmaze.com/search/shows?q=${query}`;
     fetch(url)
@@ -50,7 +51,7 @@ searchBtn.onclick = () => {
         console.log(data);
         let output = '';
         data.map((values) => {
-
+            //map over data returned from response and display in template literal
             output += `
             <div class="card my-2 mx-auto bg-dark" id="output" style="width: 22rem;">
               <div class="card-body">
@@ -65,12 +66,12 @@ searchBtn.onclick = () => {
               </div>
             </div>   ` 
         }) 
-        results_display.innerHTML = output
+        results_display.innerHTML = output //return template literal with data results to innerHTML for display
     })
     .catch((error) => {
       console.log(error);
     });
-
+    //conditional statement to display footer once search query is returned
     if(footer.style.display === 'none') {
 
       return footer.style.display = 'block';
